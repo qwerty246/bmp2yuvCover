@@ -21,7 +21,6 @@ bool ImageYUV::OpenFile(std::string sFileName, ulong uWidth, ulong uHeight, ulon
 	_ofstream.open(sFileName, std::fstream::binary | std::fstream::in | std::fstream::out);
 	if (!_ofstream)
 	{
-		std::cout << "Error: unable to open file \"" + sFileName + "\"." << std::endl;
 		_bIsOpened = false;
 		return false;
 	}

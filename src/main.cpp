@@ -49,11 +49,12 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	ImageBMP fileBMP;
+    ImageBMP fileBMP;
 	if (!fileBMP.OpenAndReadFile(GetCurDir() + "\\" + argv[1]))
-	{
+    {
 		if (!fileBMP.OpenAndReadFile(argv[1]))
 		{
+            std::cout << std::string("Error: unable to open file \"") + argv[1] + "\"." << std::endl;
 			return 1;
 		}
 	}
@@ -64,6 +65,7 @@ int main(int argc, char* argv[])
 	{
 		if (!fileYUV.OpenFile(argv[2], uWidth, uHeight, uFrames))
 		{
+            std::cout << std::string("Error: unable to open file \"") + argv[1] + "\"." << std::endl;
 			return 1;
 		}
 	}
