@@ -1,3 +1,3 @@
-cmake_minimum_required(VERSION 3.6)
-project(bmp2yuvCover)
-add_subdirectory(src)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.6)
+PROJECT(bmp2yuvCover)
+ADD_SUBDIRECTORY(src)

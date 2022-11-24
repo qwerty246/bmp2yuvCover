@@ -1,4 +1,4 @@
-add_executable(bmp2yuvCover
+ADD_EXECUTABLE(bmp2yuvCover
 	main.cpp
 	
 	bitmap/Bitmap.h
@@ -20,7 +20,7 @@ add_executable(bmp2yuvCover
 	image/ImageYUV.cpp
 )
 
-target_include_directories(bmp2yuvCover
-    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
-    PUBLIC ${CMAKE_SOURCE_DIR}
+TARGET_INCLUDE_DIRECTORIES(bmp2yuvCover
+    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
+    PRIVATE ${CMAKE_SOURCE_DIR}
 )
