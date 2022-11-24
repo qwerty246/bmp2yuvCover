@@ -1,14 +1,16 @@
 #pragma once
 
+typedef unsigned short ushort;
+
 class Param
 {
 public:
-	Param(unsigned long uSize, unsigned long uPos) : _uSize(uSize), _uPos(uPos) {};
+	Param(ushort uSize, ushort uPos) : _uSize(uSize), _uPos(uPos) {};
 	virtual ~Param() = default;
 
-	unsigned long GetSize() const;
-	unsigned long GetPos() const;
+	ushort GetSize() const;
+	ushort GetPos() const;
 private:
-	const unsigned long _uSize;
-	const unsigned long _uPos;
+	const ushort _uSize;
+	const ushort _uPos;
 };

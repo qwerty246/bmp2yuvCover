@@ -1,17 +1,17 @@
 #include "ParamLong.h"
 
-ParamLong::ParamLong(unsigned long uSize, unsigned long uPos) :
+ParamLong::ParamLong(ushort uSize, ushort uPos) :
 	Param(uSize, uPos),
 	_pValue(0)
 {
 }
 
-void ParamLong::SetValue(unsigned long pValue)
+void ParamLong::SetValue(ulong pValue)
 {
 	_pValue = pValue;
 }
 
-unsigned long ParamLong::GetValue() const
+ulong ParamLong::GetValue() const
 {
 	return _pValue;
 }

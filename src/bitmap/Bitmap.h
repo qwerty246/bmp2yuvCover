@@ -1,5 +1,7 @@
 #pragma once
 
+typedef unsigned char uchar;
+
 class Bitmap
 {
 public:
@@ -8,5 +10,5 @@ public:
 
 	virtual void FillBitmap(const char* pFileMap) = 0;
 protected:
-	long CharToLong(unsigned char* pStr) const;
+	unsigned long CharToLong(uchar* pStr) const;
 };

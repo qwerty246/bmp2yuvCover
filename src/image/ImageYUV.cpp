@@ -16,7 +16,7 @@ ImageYUV::~ImageYUV()
 {
 }
 
-bool ImageYUV::OpenFile(std::string sFileName, unsigned long uWidth, unsigned long uHeight, unsigned long uFrames)
+bool ImageYUV::OpenFile(std::string sFileName, ulong uWidth, ulong uHeight, ulong uFrames)
 {
 	_ofstream.open(sFileName, std::fstream::binary | std::fstream::in | std::fstream::out);
 	if (!_ofstream)
@@ -29,20 +29,6 @@ bool ImageYUV::OpenFile(std::string sFileName, unsigned long uWidth, unsigned lo
 	_uFrames = uFrames;
 	_bIsOpened = true;
 	return true;
-}
-
-unsigned char GetSum(int R, int G, int B, int x)
-{
-	int sum = R + G + B + x;
-	if (sum > 255)
-	{
-		return 255;
-	}
-	if (sum < 0)
-	{
-		return 0;
-	}
-	return sum;
 }
 
 bool ImageYUV::OverlayImage(const ImageBMP& file)
@@ -60,13 +46,13 @@ bool ImageYUV::OverlayImage(const ImageBMP& file)
 		return false;
 	}
 	std::vector <std::thread> vThreads;
-	unsigned int maxThreads = std::thread::hardware_concurrency();
-	size_t i = 0;
+	short maxThreads = std::thread::hardware_concurrency();
+	ulong i = 0;
 	try
 	{
 		while (i < _uFrames)
 		{
-			for (size_t j = 0; j < maxThreads && i < _uFrames; i++, j++)
+			for (short j = 0; j < maxThreads && i < _uFrames; i++, j++)
 			{
 				vThreads.push_back(std::thread(&ImageYUV::OverlayImageOnFrame, this, std::ref(file), i));
 			}
@@ -87,43 +73,56 @@ bool ImageYUV::OverlayImage(const ImageBMP& file)
 	return true;
 }
 
-void ImageYUV::OverlayImageOnFrame(const ImageBMP& file, unsigned long uFrame)
+void ImageYUV::OverlayImageOnFrame(const ImageBMP& file, ulong uFrame)
 {
 	if (uFrame > _uFrames)
 	{
 		return;
 	}
 	const char* pFileMap = file.GetDataMap();
-	unsigned long long uPosPage = uFrame * _uWidth * _uHeight * 1.5;
-	unsigned long long uPosU = _uWidth * _uHeight;
-	unsigned long long uPosV = _uWidth * _uHeight * 1.25;
-	for (size_t i = 0; i < file.GetHeight(); i++)
+	size_t uPosPage = static_cast<size_t>(uFrame * _uWidth * _uHeight * 1.5);
+	size_t uPosU = _uWidth * _uHeight;
+	size_t uPosV = static_cast<size_t>(_uWidth * _uHeight * 1.25);
+	for (ulong i = 0; i < file.GetHeight(); i++)
 	{
-		for (size_t j = 0; j < file.GetWidth(); j++)
+		for (ulong j = 0; j < file.GetWidth(); j++)
 		{
-			unsigned char uR, uG, uB;
-			uB = pFileMap[3 * file.GetWidth() * (file.GetHeight() - i - 1) + 3 * j];
-			uG = pFileMap[3 * file.GetWidth() * (file.GetHeight() - i - 1) + 3 * j + 1];
-			uR = pFileMap[3 * file.GetWidth() * (file.GetHeight() - i - 1) + 3 * j + 2];
+			uchar B = pFileMap[3 * file.GetWidth() * (file.GetHeight() - i - 1) + 3 * j];
+			uchar G = pFileMap[3 * file.GetWidth() * (file.GetHeight() - i - 1) + 3 * j + 1];
+			uchar R = pFileMap[3 * file.GetWidth() * (file.GetHeight() - i - 1) + 3 * j + 2];
 
-			unsigned char uY = GetSum(0.299 * uR, 0.587 * uG, 0.114 * uB, 0);
+			uchar Y = GetSum(0.299 * R, 0.587 * G, 0.114 * B, 0);
 
 			_mutex.lock();
 			_ofstream.seekp(uPosPage + i * _uWidth + j);
-			_ofstream << uY;
+			_ofstream << Y;
 			_mutex.unlock();
 			if ((i % 2 == 0) &&
 				(j % 2 == 0))
 			{
-				unsigned char uU = GetSum(-0.169 * uR, -0.331 * uG, 0.500 * uB, 128);
-				unsigned char uV = GetSum(0.500 * uR, -0.419 * uG, -0.081 * uB, 128);
+				uchar U = GetSum(-0.169 * R, -0.331 * G, 0.500 * B, 128);
+				uchar V = GetSum(0.500 * R, -0.419 * G, -0.081 * B, 128);
 				_mutex.lock();
 				_ofstream.seekp(uPosPage + uPosU + i * _uWidth / 4 + j / 2);
-				_ofstream << uU;
+				_ofstream << U;
 				_ofstream.seekp(uPosPage + uPosV + i * _uWidth / 4 + j / 2);
-				_ofstream << uV;
+				_ofstream << V;
 				_mutex.unlock();
 			}
 		}
 	}
+}
+
+uchar ImageYUV::GetSum(double R, double G, double B, short x) const
+{
+	double sum = R + G + B + x;
+	if (sum > 255)
+	{
+		return 255;
+	}
+	if (sum < 0)
+	{
+		return 0;
+	}
+	return static_cast<uchar>(sum);
 }

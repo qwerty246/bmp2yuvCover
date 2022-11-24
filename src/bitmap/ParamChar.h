@@ -5,7 +5,7 @@
 class ParamChar : public Param
 {
 public:
-	ParamChar(unsigned long uSize, unsigned long uPos);
+	ParamChar(ushort uSize, ushort uPos);
 	~ParamChar() = default;
 
 	void SetValue(const char* pValue);

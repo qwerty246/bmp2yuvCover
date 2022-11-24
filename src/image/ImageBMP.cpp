@@ -27,7 +27,11 @@ bool ImageBMP::OpenAndReadFile(std::string sFileName)
 
 	try
 	{
-		unsigned long uFileSize = _bitmapFileHeader.ReadAndGetFileSize(_ifstream);
+		ulong uFileSize = _bitmapFileHeader.ReadAndGetFileSize(_ifstream);
+		if (_pFileMap)
+		{
+			delete[] _pFileMap;
+		}
 		_pFileMap = new char[uFileSize];
 		_ifstream.seekg(std::ios::beg);
 		_ifstream.read(_pFileMap, uFileSize);
@@ -44,7 +48,7 @@ bool ImageBMP::OpenAndReadFile(std::string sFileName)
 	return true;
 }
 
-unsigned long ImageBMP::GetWidth() const
+ulong ImageBMP::GetWidth() const
 {
 	if (!_bIsOpened)
 	{
@@ -53,7 +57,7 @@ unsigned long ImageBMP::GetWidth() const
 	return _bitmapInfo.GetWidth();
 }
 
-unsigned long ImageBMP::GetHeight() const
+ulong ImageBMP::GetHeight() const
 {
 	if (!_bIsOpened)
 	{

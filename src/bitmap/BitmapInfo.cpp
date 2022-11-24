@@ -15,12 +15,12 @@ BitmapInfo::BitmapInfo() :
 {
 }
 
-unsigned long BitmapInfo::GetWidth() const
+ulong BitmapInfo::GetWidth() const
 {
 	return _width.GetValue();
 }
 
-unsigned long BitmapInfo::GetHeight() const
+ulong BitmapInfo::GetHeight() const
 {
 	return _height.GetValue();
 }
@@ -28,12 +28,12 @@ unsigned long BitmapInfo::GetHeight() const
 void BitmapInfo::FillBitmap(const char* pFileMap)
 {
 	_size.SetValue(pFileMap + _size.GetPos());
-	_width.SetValue(CharToLong((unsigned char*)(pFileMap + _width.GetPos())));
-	_height.SetValue(CharToLong((unsigned char*)(pFileMap + _height.GetPos())));
+	_width.SetValue(CharToLong((uchar*)(pFileMap + _width.GetPos())));
+	_height.SetValue(CharToLong((uchar*)(pFileMap + _height.GetPos())));
 	_planes.SetValue(pFileMap + _planes.GetPos());
 	_bitCount.SetValue(pFileMap + _bitCount.GetPos());
 	_compression.SetValue(pFileMap + _compression.GetPos());
-	_sizeImage.SetValue(CharToLong((unsigned char*)(pFileMap + _sizeImage.GetPos())));
+	_sizeImage.SetValue(CharToLong((uchar*)(pFileMap + _sizeImage.GetPos())));
 	_xPelsPerMeter.SetValue(pFileMap + _xPelsPerMeter.GetPos());
 	_yPelsPerMeter.SetValue(pFileMap + _yPelsPerMeter.GetPos());
 	_clrUsed.SetValue(pFileMap + _clrUsed.GetPos());

@@ -13,8 +13,8 @@ public:
 	~ImageBMP();
 
 	bool OpenAndReadFile(std::string sFileName);
-	unsigned long GetWidth() const;
-	unsigned long GetHeight() const;
+	ulong GetWidth() const;
+	ulong GetHeight() const;
 	const char* GetDataMap() const;
 private:
 	char* _pFileMap;

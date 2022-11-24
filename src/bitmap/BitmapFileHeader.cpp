@@ -9,11 +9,11 @@ BitmapFileHeader::BitmapFileHeader() :
 {
 }
 
-unsigned long BitmapFileHeader::ReadAndGetFileSize(std::ifstream& ifstream)
+ulong BitmapFileHeader::ReadAndGetFileSize(std::ifstream& ifstream)
 {
-	unsigned char pBuf[4];
+	uchar pBuf[4];
 	ifstream.seekg(_type.GetSize());
-	for (size_t i = 0; i < 4; i++)
+	for (short i = 0; i < 4; i++)
 	{
 		ifstream >> pBuf[i];
 	}

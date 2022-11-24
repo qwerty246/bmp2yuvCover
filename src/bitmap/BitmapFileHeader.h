@@ -12,7 +12,7 @@ public:
 	BitmapFileHeader();
 	~BitmapFileHeader() = default;
 
-	unsigned long ReadAndGetFileSize(std::ifstream& ifstream);
+	ulong ReadAndGetFileSize(std::ifstream& ifstream);
 	void FillBitmap(const char* pFileMap) override;
 private:
 	ParamChar _type;		// 0x4D 0x42 mark

@@ -9,9 +9,8 @@ struct BitmapInfo : public Bitmap
 	BitmapInfo();
 	~BitmapInfo() = default;
 
-	unsigned long GetWidth() const;
-	unsigned long GetHeight() const;
-
+	ulong GetWidth() const;
+	ulong GetHeight() const;
 	void FillBitmap(const char* pFileMap) override;
 private:
 	ParamChar _size;			// This struct size (40, because of 3 version)

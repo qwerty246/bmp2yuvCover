@@ -2,6 +2,7 @@
 #include <image/ImageYUV.h>
 
 #include <iostream>
+#include <assert.h>
 
 #ifdef WIN32
 # include <direct.h>
@@ -13,9 +14,10 @@
 
 std::string GetCurDir()
 {
-	char buff[FILENAME_MAX];
-	GetCurrentDir(buff, FILENAME_MAX);
-	return std::string(buff);
+	char buf[FILENAME_MAX];
+	char* res = GetCurrentDir(buf, FILENAME_MAX);
+	assert(res == buf);
+	return std::string(buf);
 }
 
 int main(int argc, char* argv[])
@@ -34,7 +36,7 @@ int main(int argc, char* argv[])
 		std::cout << "   <frames>: yuv image file frames" << std::endl;
 		exit(0);
 	}
-	unsigned long uWidth, uHeight, uFrames;
+	ulong uWidth, uHeight, uFrames;
 	try
 	{
 		uWidth = std::stoi(argv[3]);

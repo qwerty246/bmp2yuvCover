@@ -1,15 +1,17 @@
 #pragma once
 
-#include "bitmap/Param.h"
+#include "Param.h"
+
+typedef unsigned long ulong;
 
 class ParamLong : public Param
 {
 public:
-	ParamLong(unsigned long uSize, unsigned long uPos);
+	ParamLong(ushort uSize, ushort uPos);
 	~ParamLong() = default;
 
-	void SetValue(unsigned long pValue);
-	unsigned long GetValue() const;
+	void SetValue(ulong pValue);
+	ulong GetValue() const;
 private:
-	unsigned long _pValue;
+	ulong _pValue;
 };

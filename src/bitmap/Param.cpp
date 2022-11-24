@@ -1,11 +1,11 @@
 #include "Param.h"
 
-unsigned long Param::GetSize() const
+ushort Param::GetSize() const
 {
 	return _uSize;
 }
 
-unsigned long Param::GetPos() const
+ushort Param::GetPos() const
 {
 	return _uPos;
 }

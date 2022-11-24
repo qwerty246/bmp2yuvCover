@@ -1,6 +1,6 @@
 #include "ParamChar.h"
 
-ParamChar::ParamChar(unsigned long uSize, unsigned long uPos) :
+ParamChar::ParamChar(ushort uSize, ushort uPos) :
 	Param(uSize, uPos),
 	_pValue(nullptr)
 {
