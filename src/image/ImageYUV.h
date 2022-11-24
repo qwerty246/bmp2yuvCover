@@ -27,4 +27,5 @@ private:
 
 	std::ofstream _ofstream;
 	std::mutex _mutex;
+	std::string _sFileName;
 };

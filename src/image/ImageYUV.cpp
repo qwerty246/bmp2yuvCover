@@ -21,9 +21,11 @@ bool ImageYUV::OpenFile(std::string sFileName, ulong uWidth, ulong uHeight, ulon
 	_ofstream.open(sFileName, std::fstream::binary | std::fstream::in | std::fstream::out);
 	if (!_ofstream)
 	{
+		std::cout << "Error: unable to open file \"" + sFileName + "\"." << std::endl;
 		_bIsOpened = false;
 		return false;
 	}
+	_sFileName = sFileName;
 	_uWidth = uWidth;
 	_uHeight = uHeight;
 	_uFrames = uFrames;
@@ -35,14 +37,17 @@ bool ImageYUV::OverlayImage(const ImageBMP& file)
 {
 	if (!_bIsOpened)
 	{
+		std::cout << "Error: unable to open file \"" + _sFileName + "\"." << std::endl;
 		return false;
 	}
 	if (file.GetWidth() > _uWidth)
 	{
+		std::cout << "Error: width of BMP file is larger than width of YUV file." << std::endl;
 		return false;
 	}
 	if (file.GetHeight() > _uHeight)
 	{
+		std::cout << "Error: height of BMP file is larger than height of YUV file." << std::endl;
 		return false;
 	}
 	std::vector <std::thread> vThreads;
@@ -68,6 +73,7 @@ bool ImageYUV::OverlayImage(const ImageBMP& file)
 	}
 	catch (...)
 	{
+		std::cout << "An error occurred while writing file \"" + _sFileName + "\"." << std::endl;
 		return false;
 	}
 	return true;

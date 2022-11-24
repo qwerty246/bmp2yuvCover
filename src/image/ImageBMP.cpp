@@ -20,6 +20,7 @@ bool ImageBMP::OpenAndReadFile(std::string sFileName)
 	_ifstream.open(sFileName, std::ios::binary);
 	if (!_ifstream)
 	{
+		std::cout << "Error: unable to open file \"" + sFileName + "\"." << std::endl;
 		_bIsOpened = false;
 		return false;
 	}
@@ -39,6 +40,7 @@ bool ImageBMP::OpenAndReadFile(std::string sFileName)
 	}
 	catch (...)
 	{
+		std::cout << "An error occurred while reading file \"" + sFileName + "\"." << std::endl;
 		return false;
 	}
 

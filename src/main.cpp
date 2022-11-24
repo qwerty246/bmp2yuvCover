@@ -29,11 +29,11 @@ int main(int argc, char* argv[])
 														" <width>" +
 														" <height>" +
 														" <frames>" << std::endl;
-		std::cout << "<filename1>: bmp image filename" << std::endl;
-		std::cout << "<filename2>: yuv image filename" << std::endl;
-		std::cout << "    <width>: yuv image file width" << std::endl;
-		std::cout << "   <height>: yuv image file height" << std::endl;
-		std::cout << "   <frames>: yuv image file frames" << std::endl;
+		std::cout << "<filename1>: BMP image filename" << std::endl;
+		std::cout << "<filename2>: YUV image filename" << std::endl;
+		std::cout << "    <width>: YUV image file width" << std::endl;
+		std::cout << "   <height>: YUV image file height" << std::endl;
+		std::cout << "   <frames>: YUV image file frames" << std::endl;
 		exit(0);
 	}
 	ulong uWidth, uHeight, uFrames;
@@ -54,7 +54,6 @@ int main(int argc, char* argv[])
 	{
 		if (!fileBMP.OpenAndReadFile(argv[1]))
 		{
-			std::cout << std::string("File \"") + argv[1] + "\" can't be read." << std::endl;
 			return 1;
 		}
 	}
@@ -65,13 +64,11 @@ int main(int argc, char* argv[])
 	{
 		if (!fileYUV.OpenFile(argv[2], uWidth, uHeight, uFrames))
 		{
-			std::cout << std::string("File \"") + argv[2] + "\" can't be read." << std::endl;
 			return 1;
 		}
 	}
 	if (!fileYUV.OverlayImage(fileBMP))
 	{
-		std::cout << "An error occurred while writing the file." << std::endl;
 		return 1;
 	}
 
