@@ -22,7 +22,7 @@ std::string GetCurDir()
 
 int main(int argc, char* argv[])
 {
-	if (argc != 6)
+	if (argc != 6 && argc != 3)
 	{
 		std::cout << std::string("Usage: ") + argv[0] + " <filename1>" +
 														" <filename2>" +
@@ -37,16 +37,26 @@ int main(int argc, char* argv[])
 		exit(0);
 	}
 	ulong uWidth, uHeight, uFrames;
-	try
+	if (argc == 3)
 	{
-		uWidth = std::stoi(argv[3]);
-		uHeight = std::stoi(argv[4]);
-		uFrames = std::stoi(argv[5]);
+		// CIF
+		uWidth = 352;
+		uHeight = 288;
+		uFrames = 1;
 	}
-	catch (...)
+	else
 	{
-		std::cout << "Invalid parameters." << std::endl;
-		return 1;
+		try
+		{
+			uWidth = std::stoi(argv[3]);
+			uHeight = std::stoi(argv[4]);
+			uFrames = std::stoi(argv[5]);
+		}
+		catch (...)
+		{
+			std::cout << "Invalid parameters." << std::endl;
+			return 1;
+		}
 	}
 
     ImageBMP fileBMP;
@@ -60,7 +70,6 @@ int main(int argc, char* argv[])
 	}
 
 	ImageYUV fileYUV;
-
 	if (!fileYUV.OpenFile(GetCurDir() + "\\" + argv[2], uWidth, uHeight, uFrames))
 	{
 		if (!fileYUV.OpenFile(argv[2], uWidth, uHeight, uFrames))
