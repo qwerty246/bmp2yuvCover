@@ -1,4 +1,4 @@
-#include "ImageBMP.h"
+#include <image/ImageBMP.h>
 #include <iostream>
 
 ImageBMP::ImageBMP() :

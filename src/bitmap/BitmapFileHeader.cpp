@@ -1,4 +1,4 @@
-#include "BitmapFileHeader.h"
+#include <bitmap/BitmapFileHeader.h>
 
 BitmapFileHeader::BitmapFileHeader() :
 	_type(2, 0x00),

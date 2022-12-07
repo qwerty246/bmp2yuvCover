@@ -1,4 +1,4 @@
-#include "ParamChar.h"
+#include <bitmap/ParamChar.h>
 
 ParamChar::ParamChar(ushort uSize, ushort uPos) :
 	Param(uSize, uPos),

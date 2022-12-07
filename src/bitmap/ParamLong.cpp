@@ -1,4 +1,4 @@
-#include "ParamLong.h"
+#include <bitmap/ParamLong.h>
 
 ParamLong::ParamLong(ushort uSize, ushort uPos) :
 	Param(uSize, uPos),

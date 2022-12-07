@@ -1,4 +1,4 @@
-#include "Bitmap.h"
+#include <bitmap/Bitmap.h>
 #include <cmath>
 
 unsigned long Bitmap::CharToLong(uchar* pStr) const

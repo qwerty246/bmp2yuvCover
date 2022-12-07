@@ -1,4 +1,4 @@
-#include "Param.h"
+#include <bitmap/Param.h>
 
 ushort Param::GetSize() const
 {

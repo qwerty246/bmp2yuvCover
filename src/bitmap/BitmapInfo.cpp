@@ -1,4 +1,4 @@
-#include "BitmapInfo.h"
+#include <bitmap/BitmapInfo.h>
 
 BitmapInfo::BitmapInfo() :
 	_size(4, 0x0E),
