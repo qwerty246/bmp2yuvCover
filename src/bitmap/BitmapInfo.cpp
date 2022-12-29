@@ -1,41 +1,41 @@
 #include <bitmap/BitmapInfo.h>
 
 BitmapInfo::BitmapInfo() :
-	_size(4, 0x0E),
-	_width(4, 0x12),
-	_height(4, 0x16),
-	_planes(2, 0x1A),
-	_bitCount(2, 0x1C),
-	_compression(4, 0x1E),
-	_sizeImage(4, 0x22),
-	_xPelsPerMeter(4, 0x26),
-	_yPelsPerMeter(4, 0x2A),
-	_clrUsed(4, 0x2E),
-	_clrImportant(4, 0x32)
+	m_size(4, 0x0E),
+	m_width(4, 0x12),
+	m_height(4, 0x16),
+	m_planes(2, 0x1A),
+	m_bitCount(2, 0x1C),
+	m_compression(4, 0x1E),
+	m_sizeImage(4, 0x22),
+	m_xPelsPerMeter(4, 0x26),
+	m_yPelsPerMeter(4, 0x2A),
+	m_clrUsed(4, 0x2E),
+	m_clrImportant(4, 0x32)
 {
 }
 
 ulong BitmapInfo::GetWidth() const
 {
-	return _width.GetValue();
+	return m_width.GetValue();
 }
 
 ulong BitmapInfo::GetHeight() const
 {
-	return _height.GetValue();
+	return m_height.GetValue();
 }
 
 void BitmapInfo::FillBitmap(const char* pFileMap)
 {
-	_size.SetValue(pFileMap + _size.GetPos());
-	_width.SetValue(CharToLong((uchar*)(pFileMap + _width.GetPos())));
-	_height.SetValue(CharToLong((uchar*)(pFileMap + _height.GetPos())));
-	_planes.SetValue(pFileMap + _planes.GetPos());
-	_bitCount.SetValue(pFileMap + _bitCount.GetPos());
-	_compression.SetValue(pFileMap + _compression.GetPos());
-	_sizeImage.SetValue(CharToLong((uchar*)(pFileMap + _sizeImage.GetPos())));
-	_xPelsPerMeter.SetValue(pFileMap + _xPelsPerMeter.GetPos());
-	_yPelsPerMeter.SetValue(pFileMap + _yPelsPerMeter.GetPos());
-	_clrUsed.SetValue(pFileMap + _clrUsed.GetPos());
-	_clrImportant.SetValue(pFileMap + _clrImportant.GetPos());
+	m_size.SetValue(pFileMap + m_size.GetPos());
+	m_width.SetValue(CharToLong((uchar*)(pFileMap + m_width.GetPos())));
+	m_height.SetValue(CharToLong((uchar*)(pFileMap + m_height.GetPos())));
+	m_planes.SetValue(pFileMap + m_planes.GetPos());
+	m_bitCount.SetValue(pFileMap + m_bitCount.GetPos());
+	m_compression.SetValue(pFileMap + m_compression.GetPos());
+	m_sizeImage.SetValue(CharToLong((uchar*)(pFileMap + m_sizeImage.GetPos())));
+	m_xPelsPerMeter.SetValue(pFileMap + m_xPelsPerMeter.GetPos());
+	m_yPelsPerMeter.SetValue(pFileMap + m_yPelsPerMeter.GetPos());
+	m_clrUsed.SetValue(pFileMap + m_clrUsed.GetPos());
+	m_clrImportant.SetValue(pFileMap + m_clrImportant.GetPos());
 }

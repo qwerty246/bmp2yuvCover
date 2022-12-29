@@ -1,12 +1,12 @@
 #include <bitmap/ParamChar.h>
 
-ParamChar::ParamChar(ushort uSize, ushort uPos) :
-	Param(uSize, uPos),
-	_pValue(nullptr)
+ParamChar::ParamChar(ushort nSize, ushort nPos) :
+	Param(nSize, nPos),
+	m_pValue(nullptr)
 {
 }
 
 void ParamChar::SetValue(const char* pValue)
 {
-	_pValue = pValue;
+	m_pValue = pValue;
 }

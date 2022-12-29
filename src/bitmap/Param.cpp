@@ -2,10 +2,10 @@
 
 ushort Param::GetSize() const
 {
-	return _uSize;
+	return m_nSize;
 }
 
 ushort Param::GetPos() const
 {
-	return _uPos;
+	return m_nPos;
 }

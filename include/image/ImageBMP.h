@@ -12,17 +12,16 @@ public:
 	ImageBMP();
 	~ImageBMP();
 
-	bool OpenAndReadFile(std::string sFileName);
+	bool OpenAndReadFile(const std::string& sFileName);
 	ulong GetWidth() const;
 	ulong GetHeight() const;
 	const char* GetDataMap() const;
 private:
-	char* _pFileMap;
-	bool _bIsOpened;
-
-	std::ifstream _ifstream;
-	BitmapFileHeader _bitmapFileHeader;
-	BitmapInfo _bitmapInfo;
+	char* m_pFileMap;
+	bool m_bIsOpened;
+	std::ifstream m_ifstream;
+	BitmapFileHeader m_bitmapFileHeader;
+	BitmapInfo m_bitmapInfo;
 
 	enum
 	{

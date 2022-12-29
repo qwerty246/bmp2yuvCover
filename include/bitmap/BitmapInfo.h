@@ -13,15 +13,15 @@ struct BitmapInfo : public Bitmap
 	ulong GetHeight() const;
 	void FillBitmap(const char* pFileMap) override;
 private:
-	ParamChar _size;			// This struct size (40, because of 3 version)
-	ParamLong _width;			// Width
-	ParamLong _height;			// Height
-	ParamChar _planes;			// Reserved
-	ParamChar _bitCount;		// Number of bits per pixel
-	ParamChar _compression;		// Way to store pixels
-	ParamLong _sizeImage;		// Pixel data size
-	ParamChar _xPelsPerMeter;	// Number of pixels per meter horizontally
-	ParamChar _yPelsPerMeter;	// Number of pixels per meter vertically
-	ParamChar _clrUsed;			// Color table size
-	ParamChar _clrImportant;	// Number of cells from the beginning of the color table to the last used
+	ParamChar m_size;			// This struct size (40, because of 3 version)
+	ParamLong m_width;			// Width
+	ParamLong m_height;			// Height
+	ParamChar m_planes;			// Reserved
+	ParamChar m_bitCount;		// Number of bits per pixel
+	ParamChar m_compression;	// Way to store pixels
+	ParamLong m_sizeImage;		// Pixel data size
+	ParamChar m_xPelsPerMeter;	// Number of pixels per meter horizontally
+	ParamChar m_yPelsPerMeter;	// Number of pixels per meter vertically
+	ParamChar m_clrUsed;		// Color table size
+	ParamChar m_clrImportant;	// Number of cells from the beginning of the color table to the last used
 };

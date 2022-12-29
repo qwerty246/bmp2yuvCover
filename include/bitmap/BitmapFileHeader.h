@@ -15,9 +15,9 @@ public:
 	ulong ReadAndGetFileSize(std::ifstream& ifstream);
 	void FillBitmap(const char* pFileMap) override;
 private:
-	ParamChar _type;		// 0x4D 0x42 mark
-	ParamLong _size;		// File size
-	ParamChar _reserved1;	// Reserved
-	ParamChar _reserved2;	// Reserved
-	ParamChar _offBits;		// Pixel data position
+	ParamChar m_type;		// 0x4D 0x42 mark
+	ParamLong m_size;		// File size
+	ParamChar m_reserved1;	// Reserved
+	ParamChar m_reserved2;	// Reserved
+	ParamChar m_offBits;	// Pixel data position
 };

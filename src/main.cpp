@@ -14,10 +14,10 @@
 
 std::string GetCurDir()
 {
-	char buf[FILENAME_MAX];
-	char* res = GetCurrentDir(buf, FILENAME_MAX);
-	assert(res == buf);
-	return std::string(buf);
+	char pBuf[FILENAME_MAX];
+	char* pRes = GetCurrentDir(pBuf, FILENAME_MAX);
+	assert(pRes == pBuf);
+	return std::string(pBuf);
 }
 
 int main(int argc, char* argv[])
@@ -36,21 +36,22 @@ int main(int argc, char* argv[])
 		std::cout << "   <frames>: YUV image file frames" << std::endl;
 		exit(0);
 	}
-	ulong uWidth, uHeight, uFrames;
+
+	ulong lWidth, lHeight, lFrames;
 	if (argc == 3)
 	{
 		// CIF
-		uWidth = 352;
-		uHeight = 288;
-		uFrames = 1;
+		lWidth = 352;
+		lHeight = 288;
+		lFrames = 1;
 	}
 	else
 	{
 		try
 		{
-			uWidth = std::stoi(argv[3]);
-			uHeight = std::stoi(argv[4]);
-			uFrames = std::stoi(argv[5]);
+			lWidth = std::stoi(argv[3]);
+			lHeight = std::stoi(argv[4]);
+			lFrames = std::stoi(argv[5]);
 		}
 		catch (...)
 		{
@@ -70,9 +71,9 @@ int main(int argc, char* argv[])
 	}
 
 	ImageYUV fileYUV;
-	if (!fileYUV.OpenFile(GetCurDir() + "\\" + argv[2], uWidth, uHeight, uFrames))
+	if (!fileYUV.OpenFile(GetCurDir() + "\\" + argv[2], lWidth, lHeight, lFrames))
 	{
-		if (!fileYUV.OpenFile(argv[2], uWidth, uHeight, uFrames))
+		if (!fileYUV.OpenFile(argv[2], lWidth, lHeight, lFrames))
 		{
             std::cout << std::string("Error: unable to open file \"") + argv[1] + "\"." << std::endl;
 			return 1;

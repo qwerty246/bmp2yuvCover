@@ -2,40 +2,40 @@
 #include <iostream>
 
 ImageBMP::ImageBMP() :
-	_pFileMap(nullptr),
-	_bIsOpened(false)
+	m_pFileMap(nullptr),
+	m_bIsOpened(false)
 {
 }
 
 ImageBMP::~ImageBMP()
 {
-	if (_pFileMap)
+	if (m_pFileMap)
 	{
-		delete[] _pFileMap;
+		delete[] m_pFileMap;
 	}
 }
 
-bool ImageBMP::OpenAndReadFile(std::string sFileName)
+bool ImageBMP::OpenAndReadFile(const std::string& sFileName)
 {
-	_ifstream.open(sFileName, std::ios::binary);
-	if (!_ifstream)
+	m_ifstream.open(sFileName, std::ios::binary);
+	if (!m_ifstream)
 	{
-		_bIsOpened = false;
+		m_bIsOpened = false;
 		return false;
 	}
-	_bIsOpened = true;
+	m_bIsOpened = true;
 
 	try
 	{
-		ulong uFileSize = _bitmapFileHeader.ReadAndGetFileSize(_ifstream);
-		if (_pFileMap)
+		ulong lFileSize = m_bitmapFileHeader.ReadAndGetFileSize(m_ifstream);
+		if (m_pFileMap)
 		{
-			delete[] _pFileMap;
+			delete[] m_pFileMap;
 		}
-		_pFileMap = new char[uFileSize];
-		_ifstream.seekg(std::ios::beg);
-		_ifstream.read(_pFileMap, uFileSize);
-		_ifstream.close();
+		m_pFileMap = new char[lFileSize];
+		m_ifstream.seekg(std::ios::beg);
+		m_ifstream.read(m_pFileMap, lFileSize);
+		m_ifstream.close();
 	}
 	catch (...)
 	{
@@ -43,35 +43,34 @@ bool ImageBMP::OpenAndReadFile(std::string sFileName)
 		return false;
 	}
 
-	_bitmapFileHeader.FillBitmap(_pFileMap);
-	_bitmapInfo.FillBitmap(_pFileMap);
-
+	m_bitmapFileHeader.FillBitmap(m_pFileMap);
+	m_bitmapInfo.FillBitmap(m_pFileMap);
 	return true;
 }
 
 ulong ImageBMP::GetWidth() const
 {
-	if (!_bIsOpened)
+	if (!m_bIsOpened)
 	{
 		return 0;
 	}
-	return _bitmapInfo.GetWidth();
+	return m_bitmapInfo.GetWidth();
 }
 
 ulong ImageBMP::GetHeight() const
 {
-	if (!_bIsOpened)
+	if (!m_bIsOpened)
 	{
 		return 0;
 	}
-	return _bitmapInfo.GetHeight();
+	return m_bitmapInfo.GetHeight();
 }
 
 const char* ImageBMP::GetDataMap() const
 {
-	if (!_bIsOpened)
+	if (!m_bIsOpened)
 	{
 		return nullptr;
 	}
-	return _pFileMap + BITMAP_SIZE;
+	return m_pFileMap + BITMAP_SIZE;
 }

@@ -7,11 +7,11 @@ typedef unsigned long ulong;
 class ParamLong : public Param
 {
 public:
-	ParamLong(ushort uSize, ushort uPos);
+	ParamLong(ushort nSize, ushort nPos);
 	~ParamLong() = default;
 
-	void SetValue(ulong pValue);
+	void SetValue(ulong lValue);
 	ulong GetValue() const;
 private:
-	ulong _pValue;
+	ulong m_lValue;
 };

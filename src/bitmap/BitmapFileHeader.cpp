@@ -1,30 +1,30 @@
 #include <bitmap/BitmapFileHeader.h>
 
 BitmapFileHeader::BitmapFileHeader() :
-	_type(2, 0x00),
-	_size(4, 0x02),
-	_reserved1(2, 0x06),
-	_reserved2(2, 0x08),
-	_offBits(4, 0x0A)
+	m_type(2, 0x00),
+	m_size(4, 0x02),
+	m_reserved1(2, 0x06),
+	m_reserved2(2, 0x08),
+	m_offBits(4, 0x0A)
 {
 }
 
 ulong BitmapFileHeader::ReadAndGetFileSize(std::ifstream& ifstream)
 {
 	uchar pBuf[4];
-	ifstream.seekg(_type.GetSize());
+	ifstream.seekg(m_type.GetSize());
 	for (short i = 0; i < 4; i++)
 	{
 		ifstream >> pBuf[i];
 	}
-	_size.SetValue(CharToLong(pBuf));
-	return _size.GetValue();
+	m_size.SetValue(CharToLong(pBuf));
+	return m_size.GetValue();
 }
 
 void BitmapFileHeader::FillBitmap(const char* pFileMap)
 {
-	_type.SetValue(pFileMap);
-	_reserved1.SetValue(pFileMap + _reserved1.GetPos());
-	_reserved2.SetValue(pFileMap + _reserved2.GetPos());
-	_offBits.SetValue(pFileMap + _offBits.GetPos());
+	m_type.SetValue(pFileMap);
+	m_reserved1.SetValue(pFileMap + m_reserved1.GetPos());
+	m_reserved2.SetValue(pFileMap + m_reserved2.GetPos());
+	m_offBits.SetValue(pFileMap + m_offBits.GetPos());
 }

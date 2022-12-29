@@ -14,18 +14,17 @@ public:
 	ImageYUV();
 	~ImageYUV();
 
-	bool OpenFile(std::string sFileName, ulong uWidth, ulong uHeight, ulong uFrames);
+	bool OpenFile(std::string sFileName, ulong lWidth, ulong lHeight, ulong lFrames);
 	bool OverlayImage(const ImageBMP& file);
 private:
-	void OverlayImageOnFrame(const ImageBMP& file, ulong uFrame);
-	uchar GetSum(double R, double G, double B, short x) const;
+	void OverlayImageOnFrame(const ImageBMP& file, ulong lFrame);
+	uchar GetSum(double dR, double dG, double dB, short nX) const;
 
-	ulong _uWidth;
-	ulong _uHeight;
-	ulong _uFrames;
-	bool _bIsOpened;
-
-	std::ofstream _ofstream;
-	std::mutex _mutex;
-	std::string _sFileName;
+	ulong m_lWidth;
+	ulong m_lHeight;
+	ulong m_lFrames;
+	bool m_bIsOpened;
+	std::ofstream m_ofstream;
+	std::mutex m_mutex;
+	std::string m_sFileName;
 };

@@ -10,5 +10,5 @@ public:
 
 	virtual void FillBitmap(const char* pFileMap) = 0;
 protected:
-	unsigned long CharToLong(uchar* pStr) const;
+	unsigned long CharToLong(const uchar* pStr) const;
 };
